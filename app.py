@@ -2,6 +2,9 @@ import os
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -11,10 +14,14 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+mongo = PyMongo(app)
+
 
 @app.route("/")
-def hello():
-    return "hello"
+@app.route("/get_log")
+def get_log():
+    logs = mongo.db.logs.find()
+    return render_template("base.html", logs=logs)
 
 
 if __name__ == "__main__":
