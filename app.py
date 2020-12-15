@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/get_log")
 def get_log():
     logs = mongo.db.logs.find()
-    return render_template("logs.html", logs=logs)
+    return render_template("home.html", logs=logs)
 
 
 if __name__ == "__main__":
