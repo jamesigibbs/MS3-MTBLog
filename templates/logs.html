@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>this is another test</h1>
+
+    {% for log in logs %}
+            {{ log.name }}<br>
+            {{ log.description }}<br>
+            {{ log.date }}<br>
+            {{ log.location }}<br>
+            {{ log.displine }}<br>
+            {{ log.grade }}<br>
+            {{ log.weather }}<br>
+            {{ log.trail_conditions }}<br>
+            {{ log.elevation }}<br>
+            {{ log.distance }}<br>
+            {{ log.bike_used }}<br>
+            {{ log.ride_again }}<br>
+        {% endfor %}
+
+{% endblock %}
