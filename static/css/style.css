@@ -1,3 +1,15 @@
 body.prelog {
     background-image: url("../imgs/mtb-bg.jpg");
 }
+
+body.postlog {
+    background-image: url("../imgs/mountain-bg.jpg");
+}
+
+.whitebg {
+    background: white;
+}
+
+.flashes h4 {
+    line-height: 2;
+}

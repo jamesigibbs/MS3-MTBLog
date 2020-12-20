@@ -1,20 +1,17 @@
-{% extends "prelog-base.html" %}
+{% extends "postlog-base.html" %}
 {% block content %}
-    <h1>this is another test</h1>
-
-    {% for log in logs %}
-            {{ log.name }}<br>
-            {{ log.description }}<br>
-            {{ log.date }}<br>
-            {{ log.location }}<br>
-            {{ log.displine }}<br>
-            {{ log.grade }}<br>
-            {{ log.weather }}<br>
-            {{ log.trail_conditions }}<br>
-            {{ log.elevation }}<br>
-            {{ log.distance }}<br>
-            {{ log.bike_used }}<br>
-            {{ log.ride_again }}<br>
-        {% endfor %}
-
+     <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
 {% endblock %}

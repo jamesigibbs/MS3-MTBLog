@@ -21,7 +21,29 @@ mongo = PyMongo(app)
 @app.route("/get_log")
 def get_log():
     logs = mongo.db.logs.find()
-    return render_template("login.html", logs=logs)
+    return render_template("home.html", logs=logs)
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # check if the email already exists in the database
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email")})
+        if existing_user:
+            flash("Email already in user")
+            return redirect(url_for("register"))
+
+        register = {
+            "email": request.form.get("email"),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("email")
+        flash("Registraion Succsessful")
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
