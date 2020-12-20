@@ -45,6 +45,27 @@ def register():
         flash("Registraion Succsessful")
     return render_template("register.html")
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # check if username exists in database
+        exitsing_user = mongo.db.users.find_one(
+             {"email": request.form.get("email")})
+
+        if exitsing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(exitsing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("email")
+                return render_template("logs.html")
+            else:
+                # invalid password
+                flash("Email and/or Password is incorrect")
+                return redirect(url_for("login"))
+        else:
+            # email does not exist
+            flash("Email and/or Password is incorrect")
+            return redirect(url_for("login"))
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

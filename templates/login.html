@@ -10,39 +10,38 @@
     <div class="row"></div>
     <div class="row"></div>
     <div class="row">
-        <div class="col s4"></div>
-        <div class="col s4 center-align">
-            <div class="card large blue-grey darken-1">
+        <div class="col s12 m4 offset-m4 center-align">
+            <form class="card large blue-grey darken-1" method="POST" action="{{ url_for('login') }}">
                 <div class="card-content white-text">
-                    <h2>Log in</h2>
+                    <h2>Login</h2>
+                    <!--Email-->
                     <div class="input-field col s10">
                         <i class="fas fa-sign-in-alt prefix"></i>
-                        <input id="email" name="email" type="text" class="validate">
+                        <input id="email" name="email" type="email" class="validate" required>
                         <label for="email">Email Address</label>
                     </div>
-
+                    <!--Password-->
                     <div class="input-field col s10">
-                        <i class="fas fa-key prefix"></i>
-                        <input id="password" name="password" type="text" class="validate">
+                        <i class="fas fa-lock prefix"></i>
+                        <input id="password" name="password" type="password" pattern="^[a-zA-Z0-9]{5,15}$" minlength="4" maxlength="20" class="validate" required>
                         <label for="password">Password</label>
                     </div>
 
                     <div class="col s12 center-align">
-                                <a class="waves-effect waves-light btn">Log In</a>
+                                <button type="submit" class="waves-effect waves-light btn">Login</button>
                     </div>
                     <div class="row"></div>
                     <div class="row">
                         <div class="col s12">
                             <p class="center-align">
-                                New Here?
-                                <a href="#" class="light-blue-text darken-4">Register Account</a>
+                                New here?
+                                <a href="{{ url_for('register') }}" class="light-blue-text darken-4">Register</a>
                             </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>
-    <div class="col s4"></div>
 {% endblock %}
