@@ -56,7 +56,7 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(exitsing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email")
-                return render_template("logs.html")
+                return redirect(url_for("logs"))
             else:
                 # invalid password
                 flash("Email and/or Password is incorrect")
@@ -65,7 +65,22 @@ def login():
             # email does not exist
             flash("Email and/or Password is incorrect")
             return redirect(url_for("login"))
+
     return render_template("login.html")
+
+
+@app.route("/logs")
+def logs():
+    if session["user"]:
+        return render_template("logs.html")
+
+    return redirect(url_for("login"))
+
+@app.route("/logout")
+def logout():
+    session.pop("user")
+    return redirect(url_for("login"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
