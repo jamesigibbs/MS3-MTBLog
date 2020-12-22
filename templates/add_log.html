@@ -1,0 +1,17 @@
+{% extends "postlog-base.html" %}
+{% block content %}
+<h3 class="center-align">Add Log</h3>
+
+<form>
+    <div class="row">
+        <div class="input-field  grey-text text-darken-2 col s12">
+            <input id="name" name="name" type="text" class="validate">
+            <label for="name">Name Of Ride</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="description" name="description" class="materialize-textarea"></textarea>
+          <label for="description">Description</label>
+        </div>
+    </div>
+</form>
+ {% endblock %}

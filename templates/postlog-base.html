@@ -30,7 +30,7 @@
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{{ url_for('logs') }}">Home</a></li>
                             <li><a href="">Admin Tools</a></li>
-                            <li><a href="">Add Log</a></li>
+                            <li><a href="{{ url_for('add_log') }}">Add Log</a></li>
                             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                         </ul>
                     </div>
@@ -39,7 +39,7 @@
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="{{ url_for('logs') }}">Home</a></li>
                     <li><a href="">Admin Tools</a></li>
-                    <li><a href="">Add Log</a></li>
+                    <li><a href="{{ url_for('add_log') }}">Add Log</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 </ul>
 
