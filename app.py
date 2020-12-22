@@ -20,8 +20,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_log")
 def get_log():
-    logs = mongo.db.logs.find()
-    return render_template("home.html", logs=logs)
+    return render_template("home.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -45,6 +44,7 @@ def register():
         flash("Registraion Succsessful")
     return render_template("register.html")
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -54,7 +54,8 @@ def login():
 
         if exitsing_user:
             # ensure hashed password matches user input
-            if check_password_hash(exitsing_user["password"], request.form.get("password")):
+            if check_password_hash(
+             exitsing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email")
                 return redirect(url_for("logs"))
             else:
@@ -72,9 +73,11 @@ def login():
 @app.route("/logs")
 def logs():
     if session["user"]:
-        return render_template("logs.html")
-
+        logs = mongo.db.logs.find()
+        return render_template("logs.html", logs=logs)
+    
     return redirect(url_for("login"))
+
 
 @app.route("/logout")
 def logout():

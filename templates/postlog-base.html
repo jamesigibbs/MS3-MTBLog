@@ -25,10 +25,10 @@
             <div class="container">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo">MTB Log</a>
+                        <a href="#" class="brand-logo">MTB Log</a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                         <ul class="right hide-on-med-and-down">
-                            <li><a href="">Home</a></li>
+                            <li><a href="{{ url_for('logs') }}">Home</a></li>
                             <li><a href="">Admin Tools</a></li>
                             <li><a href="">Add Log</a></li>
                             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -37,7 +37,7 @@
                 </nav>
                 <!--Moblie nav-->
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="">Home</a></li>
+                    <li><a href="{{ url_for('logs') }}">Home</a></li>
                     <li><a href="">Admin Tools</a></li>
                     <li><a href="">Add Log</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
