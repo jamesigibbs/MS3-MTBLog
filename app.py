@@ -87,7 +87,13 @@ def logout():
 
 @app.route("/add_log")
 def add_log():
-    return render_template("add_log.html")
+    disciplines = mongo.db.discipline.find().sort("discipline_name", 1)
+    conditions = mongo.db.conditions.find().sort("condition_name", 1)
+    return render_template(
+        "add_log.html",
+        disciplines=disciplines,
+        conditions=conditions
+     )
 
 
 if __name__ == "__main__":

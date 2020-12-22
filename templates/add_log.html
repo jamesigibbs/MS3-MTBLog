@@ -1,8 +1,8 @@
 {% extends "postlog-base.html" %}
 {% block content %}
     <h3 class="center-align">Add Log</h3>
-    <div class="container row ">
-        <form class="col s10 offset-s6" method="POST" action="">
+    <div class="row container green lighten-4">
+        <form class="col s10 offset-s1" method="POST" action="">
             <div class="row">
                 <!-- Name Of Rider -->
                 <div class="input-field  grey-text text-darken-2 col s12">
@@ -26,10 +26,13 @@
                     <input id="location" name="location" type="text" minlength="3" maxlength="100" class="validate">
                     <label for="location">Location</label>
                 </div>
-                <!-- Disapline -->
+                <!-- Discipline -->
                 <div class="input-field grey-text text-darken-2 col s6">
-                    <select>
-                        <option value="" disabled selected>Disapline</option>
+                    <select class="grey-text text-darken-2">
+                        <option value="" disabled selected>Discipline</option>
+                        {% for discipline in disciplines %}
+                            <option value="{{ discipline.discipline_name }}">{{ discipline.discipline_name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!-- Grade -->
@@ -61,6 +64,9 @@
                 <div class="input-field grey-text text-darken-2 col s6">
                     <select>
                         <option value="" disabled selected>Trail Conditions</option>
+                        {% for condition in conditions %}
+                            <option value="{{ condition.condition_name }}">{{ condition.condition_name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <!--Bike Used-->
