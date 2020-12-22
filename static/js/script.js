@@ -2,7 +2,15 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
-    $('.datepicker').datepicker();
+    $('select').formSelect();
+    $('.datepicker').datepicker({
+        format: "dd mmmm, yyyy",
+        yearRange: 15,
+        showClearBtn: true,
+        i18n: {
+            done: "Select"
+        }
+    });
   });
 
 //Custom
