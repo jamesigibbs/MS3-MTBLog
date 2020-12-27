@@ -27,20 +27,25 @@ def get_log():
 def register():
     if request.method == "POST":
         # check if the email already exists in the database
-        existing_user = mongo.db.users.find_one(
+        existing_user_email = mongo.db.users.find_one(
             {"email": request.form.get("email")})
-        if existing_user:
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
+        if existing_user_email:
             flash("Email already in user")
             return redirect(url_for("register"))
-
+        if existing_user:
+            flash("Username already in user")
+            return redirect(url_for("register"))
         register = {
             "email": request.form.get("email"),
+            "username": request.form.get("username"),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("email")
+        session["user"] = request.form.get("username")
         flash("Registraion Succsessful")
     return render_template("register.html")
 
@@ -75,7 +80,6 @@ def logs():
     if session["user"]:
         logs = mongo.db.logs.find()
         return render_template("logs.html", logs=logs)
-    
     return redirect(url_for("login"))
 
 
@@ -85,8 +89,26 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_log")
+@app.route("/add_log", methods=["GET", "POST"])
 def add_log():
+    if request.method == "POST":
+        ride_again = "Yes" if request.form.get("ride_again") else "No"
+        log = {
+            "name": request.form.get("name_of_ride"),
+            "description": request.form.get("description"),
+            "date": request.form.get("date_of_ride"),
+            "location": request.form.get("location"),
+            "discipline": request.form.get("discipline"),
+            "grade": request.form.get("grade"),
+            "weather": request.form.get("weather"),
+            "trail_condtions": request.form.get("trail_condtions"),
+            "bike_used": request.form.get("bike_used"),
+            "ride_again": ride_again,
+            "created_by": session['user']
+        }
+        mongo.db.logs.insert_one(log)
+        flash('Task Successfully Added')
+        return redirect(url_for("logs"))
     disciplines = mongo.db.discipline.find().sort("discipline_name", 1)
     conditions = mongo.db.conditions.find().sort("condition_name", 1)
     return render_template(
