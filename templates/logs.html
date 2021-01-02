@@ -3,11 +3,19 @@
     <ul class="collapsible">
         {% for log in logs %}
             <li>
-                <div class="collapsible-header">
-                        <i class="fas fa-caret-down"></i>
-                        <strong>{{ log.name }}</strong>
-                        {{ log.date }}
-                        <p>{{ log.created_by }}</p>
+                <div class="collapsible-header row">  
+                    <div class="col s8">
+                        <span class="header-title"><i class="fas fa-caret-down"></i></span>  
+                        <span class="header-title"><strong>{{ log.name }}</strong></span>     
+                        <span class="header-title">{{ log.date }}</span>  
+                        <span class="header-title">{{ log.created_by }}</span>
+                    </div>
+                    <div class="col s4">
+                        <a class="waves-effect waves-light btn"><i class="fas fa-edit"></i></a>
+                        <a class="waves-effect waves-light btn red accent-4"><i class="fas fa-times"></i></a>
+                    </div>
+                        
+
                 </div>
                 <div class="collapsible-body">
                     <div class="row">

@@ -13,3 +13,11 @@ body.postlog {
 .flashes h4 {
     line-height: 2;
 }
+
+.add_form {
+    padding: 20px;
+}
+
+.header-title{
+    padding-right: 5px;
+}

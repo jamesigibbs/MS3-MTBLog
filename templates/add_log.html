@@ -1,96 +1,110 @@
 {% extends "postlog-base.html" %}
 {% block content %}
-    <h3 class="center-align">Add Log</h3>
-    <div class="row container green lighten-4">
-        <form class="col s10 offset-s1" method="POST" action="{{ url_for('add_log') }}">
-            <div class="row">
-                <!-- Name Of Rider -->
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="name_of_ride" name="name_of_ride" type="text" minlength="3" maxlength="100" class="validate">
-                    <label for="name_of_ride">Name Of Ride</label>
-                </div>
-                <!-- Description -->
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <textarea id="description" name="description" minlength="5" maxlength="500"
-                        class="materialize-textarea"></textarea>
-                    <label for="description">Description</label>
-                </div>
-                <!-- Date Of Ride -->
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="date_of_ride" name="date_of_ride" type="text" minlength="3" maxlength="50"
-                        class="datepicker validate">
-                    <label for="date_of_ride">Date Of Ride</label>
-                </div>
-                <!-- Location -->
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="location" name="location" type="text" minlength="3" maxlength="100" class="validate">
-                    <label for="location">Location</label>
-                </div>
-                <!-- Discipline -->
-                <div class="input-field grey-text text-darken-2 col s6">
-                    <select id="discipline" class="grey-text text-darken-2">
-                        <option value="" disabled selected>Discipline</option>
-                        {% for discipline in disciplines %}
+    <div class="add_form">
+        <h3 class="center-align">Add Log</h3>
+        <div class="row container green lighten-4">
+            <form class="col s10 offset-s1" method="POST" action="{{ url_for('add_log') }}">
+                <div class="row">
+                    <!-- Name Of Rider -->
+                    <div class="input-field  grey-text text-darken-2 col s12">
+                        <input id="name_of_ride" name="name_of_ride" type="text" minlength="3" maxlength="100"
+                            class="validate" required>
+                        <label for="name_of_ride">Name Of Ride</label>
+                    </div>
+                    <!-- Description -->
+                    <div class="input-field  grey-text text-darken-2 col s12">
+                        <textarea id="description" name="description" minlength="5" maxlength="500"
+                            class="materialize-textarea" required></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                    <!-- Date Of Ride -->
+                    <div class="input-field  grey-text text-darken-2 col s12">
+                        <input id="date_of_ride" name="date_of_ride" type="text" minlength="3" maxlength="50"
+                            class="datepicker validate" required>
+                        <label for="date_of_ride">Date Of Ride</label>
+                    </div>
+                    <!-- Location -->
+                    <div class="input-field  grey-text text-darken-2 col s12">
+                        <input id="location" name="location" type="text" minlength="3" maxlength="100" class="validate">
+                        <label for="location">Location</label>
+                    </div>
+                    <!-- Discipline -->
+                    <div class="input-field grey-text text-darken-2 col s6">
+                        <select id="discipline" class="grey-text text-darken-2" required>
+                            <option value="" disabled selected>Discipline</option>
+                            {% for discipline in disciplines %}
                             <option value="{{ discipline.discipline_name }}">{{ discipline.discipline_name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!-- Grade -->
-                <div class="input-field grey-text text-darken-2 col s6">
-                    <select id="grade">
-                        <option value="" disabled selected>Grade</option>
-                        <option value="Black">Black</option>
-                        <option value="Black/Red">Black/Red</option>
-                        <option value="Red">Red</option>
-                        <option value="Red/Blue">Red/Blue</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Green">Green</option>
-                    </select>
-                </div>
-                <!-- Weather -->
-                <div class="input-field grey-text text-darken-2 col s6">
-                    <select id="weather">
-                        <option value="" disabled selected>Weather</option>
-                        <option value="Light Rain">Light Rain</option>
-                        <option value="Overcast">Overcast</option>
-                        <option value="Showers">Showers</option>
-                        <option value="Snow">Snow</option>
-                        <option value="Storm">Storm</option>
-                        <option value="Sunny">Sunny</option>
-                        <option value="Windy">Windy</option>
-                    </select>
-                </div>
-                <!-- Trail Conditions -->
-                <div class="input-field grey-text text-darken-2 col s6">
-                    <select id="trail_conditons">
-                        <option value="" disabled selected>Trail Conditions</option>
-                        {% for condition in conditions %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Grade -->
+                    <div class="input-field grey-text text-darken-2 col s6">
+                        <select id="grade" required>
+                            <option value="" disabled selected>Grade</option>
+                            <option value="Black">Black</option>
+                            <option value="Black/Red">Black/Red</option>
+                            <option value="Red">Red</option>
+                            <option value="Red/Blue">Red/Blue</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                        </select>
+                    </div>
+                    <!-- Weather -->
+                    <div class="input-field grey-text text-darken-2 col s6">
+                        <select id="weather" required>
+                            <option value="" disabled selected>Weather</option>
+                            <option value="Light Rain">Light Rain</option>
+                            <option value="Overcast">Overcast</option>
+                            <option value="Showers">Showers</option>
+                            <option value="Snow">Snow</option>
+                            <option value="Storm">Storm</option>
+                            <option value="Sunny">Sunny</option>
+                            <option value="Windy">Windy</option>
+                        </select>
+                    </div>
+                    <!-- Trail Conditions -->
+                    <div class="input-field grey-text text-darken-2 col s6">
+                        <select id="trail_conditons" required>
+                            <option value="" disabled selected>Trail Conditions</option>
+                            {% for condition in conditions %}
                             <option value="{{ condition.condition_name }}">{{ condition.condition_name }}</option>
-                        {% endfor %}
-                    </select>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Elevation -->
+                    <div class="input-field  grey-text text-darken-2 col s6">
+                        <input id="elevation" name="elevation" type="text" minlength="3" maxlength="100" class="validate">
+                        <label for="elevation">Elevation</label>
+                    </div>
+                    <!-- Distance -->
+                    <div class="input-field  grey-text text-darken-2 col s6">
+                        <input id="distance" name="distance" type="text" minlength="1" maxlength="100" class="validate">
+                        <label for="distance">Distance</label>
+                    </div>
+                    <!--Bike Used-->
+                    <div class="input-field  grey-text text-darken-2 col s12">
+                        <input id="bike_used" name="bike_used" type="text" minlength="1" maxlength="5" class="validate"
+                            required>
+                        <label for="bike_used">Bike Used</label>
+                    </div>
+                    <!--Ride Again-->
+                    <div class="switch col s6 center-align">
+                        <p for="ride_again">Would you ride this trail again?</p>
+                        <label class="black-text">
+                            No
+                            <input id="ride_again" name="ride_again" type="checkbox">
+                            <span class="lever"></span>
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col s6 center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="add_log">
+                            Add Log <i class="fas fa-biking right"></i>
+                        </button>
+                    </div>
                 </div>
-                <!--Bike Used-->
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="bike_used" name="bike_used" type="text" minlength="3" maxlength="100" class="validate">
-                    <label for="bike_used">Bike Used</label>
-                </div>
-                <!--Ride Again-->
-                <div class="switch col s6 center-align">
-                    <p for="ride_again">Would you ride this trail again?</p>
-                    <label class="black-text">
-                        No
-                        <input id="ride_again" name="ride_again" type="checkbox">
-                        <span class="lever"></span>
-                        Yes
-                    </label>
-                </div>
-                <div class="col s6 center-align">
-                    <button class="btn waves-effect waves-light" type="submit" name="add_log">
-                        Add Log <i class="fas fa-biking right"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

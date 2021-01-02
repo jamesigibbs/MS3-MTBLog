@@ -55,21 +55,21 @@ def login():
     if request.method == "POST":
         # check if username exists in database
         exitsing_user = mongo.db.users.find_one(
-             {"email": request.form.get("email")})
+             {"username": request.form.get("username")})
 
         if exitsing_user:
             # ensure hashed password matches user input
             if check_password_hash(
              exitsing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("email")
+                session["user"] = request.form.get("username")
                 return redirect(url_for("logs"))
             else:
                 # invalid password
-                flash("Email and/or Password is incorrect")
+                flash("Username and/or Password is incorrect")
                 return redirect(url_for("login"))
         else:
-            # email does not exist
-            flash("Email and/or Password is incorrect")
+            # username does not exist
+            flash("Username and/or Password is incorrect")
             return redirect(url_for("login"))
 
     return render_template("login.html")
