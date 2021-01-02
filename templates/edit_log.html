@@ -8,32 +8,36 @@
                     <!-- Name Of Rider -->
                     <div class="input-field  grey-text text-darken-2 col s12">
                         <input id="name_of_ride" name="name_of_ride" type="text" minlength="3" maxlength="100"
-                            class="validate" required>
+                            class="validate" value="{{ log.name }}" required>
                         <label for="name_of_ride">Name Of Ride</label>
                     </div>
                     <!-- Description -->
                     <div class="input-field  grey-text text-darken-2 col s12">
                         <textarea id="description" name="description" minlength="5" maxlength="500"
-                            class="materialize-textarea" required></textarea>
+                            class="materialize-textarea" required>{{ log.description }}</textarea>
                         <label for="description">Description</label>
                     </div>
                     <!-- Date Of Ride -->
                     <div class="input-field  grey-text text-darken-2 col s12">
                         <input id="date_of_ride" name="date_of_ride" type="text" minlength="3" maxlength="50"
-                            class="datepicker validate" required>
+                            class="datepicker validate" value="{{ log.date }}" required>
                         <label for="date_of_ride">Date Of Ride</label>
                     </div>
                     <!-- Location -->
                     <div class="input-field  grey-text text-darken-2 col s12">
-                        <input id="location" name="location" type="text" minlength="3" maxlength="100" class="validate">
+                        <input id="location" name="location" value="{{ log.location }}" type="text" minlength="3" maxlength="100" class="validate">
                         <label for="location">Location</label>
                     </div>
                     <!-- Discipline -->
                     <div class="input-field grey-text text-darken-2 col s6">
                         <select id="discipline" name="discipline" class="grey-text text-darken-2" required>
-                            <option value="" disabled selected>Discipline</option>
+                            <option value="" disabled>Discipline</option>
                             {% for discipline in disciplines %}
-                            <option value="{{ discipline.discipline_name|capitalize }}">{{ discipline.discipline_name|capitalize }}</option>
+                                {% if discipline.discipline_name == log.discipline %}
+                                    <option value="{{ discipline.discipline_name|capitalize }}" selected>{{ discipline.discipline_name|capitalize }}</option>
+                                {% else %}
+                                    <option value="{{ discipline.discipline_name|capitalize }}">{{ discipline.discipline_name|capitalize }}</option>
+                                {% endif %}                            
                             {% endfor %}
                         </select>
                     </div>
@@ -41,66 +45,100 @@
                     <div class="input-field grey-text text-darken-2 col s6">
                         <select id="grade" name="grade" required>
                             <option value="" disabled selected>Grade</option>
-                            <option value="Black">Black</option>
-                            <option value="Black/Red">Black/Red</option>
-                            <option value="Red">Red</option>
-                            <option value="Red/Blue">Red/Blue</option>
-                            <option value="Blue">Blue</option>
-                            <option value="Green">Green</option>
+                            {% if log.weather == null %}
+                                <option value="Black">Black</option>
+                                <option value="Black/Red">Black/Red</option>
+                                <option value="Red">Red</option>
+                                <option value="Red/Blue">Red/Blue</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Green">Green</option>
+                            {% else %}
+                                <option value="{{ log.grade }}" disabled selected>{{ log.grade }}</option>
+                                <option value="Black">Black</option>
+                                <option value="Black/Red">Black/Red</option>
+                                <option value="Red">Red</option>
+                                <option value="Red/Blue">Red/Blue</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Green">Green</option>
+                            {% endif %}
                         </select>
                     </div>
                     <!-- Weather -->
                     <div class="input-field grey-text text-darken-2 col s6">
                         <select id="weather" name="weather" required>
-                            <option value="" disabled selected>Weather</option>
-                            <option value="Light Rain">Light Rain</option>
-                            <option value="Overcast">Overcast</option>
-                            <option value="Showers">Showers</option>
-                            <option value="Snow">Snow</option>
-                            <option value="Storm">Storm</option>
-                            <option value="Sunny">Sunny</option>
-                            <option value="Windy">Windy</option>
+                            <option value="" disabled>Weather</option>
+                            {% if log.weather == null %}
+                                <option value="Light Rain">Light Rain</option>
+                                <option value="Overcast">Overcast</option>
+                                <option value="Showers">Showers</option>
+                                <option value="Snow">Snow</option>
+                                <option value="Storm">Storm</option>
+                                <option value="Sunny">Sunny</option>
+                                <option value="Windy">Windy</option>
+                            {% else %}
+                                <option value="{{ log.weather }}" disabled selected>{{ log.weather }}</option>
+                                <option value="Light Rain">Light Rain</option>
+                                <option value="Overcast">Overcast</option>
+                                <option value="Showers">Showers</option>
+                                <option value="Snow">Snow</option>
+                                <option value="Storm">Storm</option>
+                                <option value="Sunny">Sunny</option>
+                                <option value="Windy">Windy</option>
+                            {% endif %}
                         </select>
                     </div>
                     <!-- Trail Conditions -->
                     <div class="input-field grey-text text-darken-2 col s6">
                         <select id="trail_conditions" name="trail_conditions" required>
-                            <option value="" disabled selected>Trail Conditions</option>
+                            <option value="" disabled>Trail Conditions</option>
                             {% for condition in conditions %}
-                            <option value="{{ condition.condition_name|capitalize }}">{{ condition.condition_name|capitalize }}</option>
+                                {% if condition.condition_name == log.trail_conditions %}
+                                    <option value="{{ condition.condition_name|capitalize }}" selected>{{ condition.condition_name|capitalize }}</option>
+                                {% else %}
+                                    <option value="{{ condition.condition_name|capitalize }}">{{ condition.condition_name|capitalize }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>
                     <!-- Elevation -->
                     <div class="input-field  grey-text text-darken-2 col s6">
-                        <input id="elevation" name="elevation" type="text" minlength="3" maxlength="5" class="validate">
+                        <input id="elevation" name="elevation" value="{{ log.elevation }}" type="text" minlength="3" maxlength="5" class="validate">
                         <label for="elevation">Elevation</label>
                     </div>
                     <!-- Distance -->
                     <div class="input-field  grey-text text-darken-2 col s6">
-                        <input id="distance" name="distance" type="text" minlength="1" maxlength="5" class="validate">
+                        <input id="distance" name="distance" value="{{ log.distance }}" type="text" minlength="1" maxlength="5" class="validate">
                         <label for="distance">Distance</label>
                     </div>
                     <!--Bike Used-->
                     <div class="input-field  grey-text text-darken-2 col s12">
-                        <input id="bike_used" name="bike_used" type="text" minlength="1" maxlength="50" class="validate"
+                        <input id="bike_used" name="bike_used" value="{{ log.bike_used }}" type="text" minlength="1" maxlength="50" class="validate"
                             required>
                         <label for="bike_used">Bike Used</label>
                     </div>
                     <!--Ride Again-->
-                    <div class="switch col s6 center-align">
+                    <div class="switch col s12 center-align">
                         <p for="ride_again">Would you ride this trail again?</p>
                         <label class="black-text">
                             No
-                            <input id="ride_again" name="ride_again" type="checkbox">
+                            {% if log.ride_again == "Yes" %}
+                                <input id="ride_again" name="ride_again" type="checkbox" checked>
+                            {% else %}
+                                 <input id="ride_again" name="ride_again" type="checkbox">
+                            {% endif %}
                             <span class="lever"></span>
                             Yes
                         </label>
                     </div>
-                    <div class="col s6 center-align">
+                    <div class="col s6 center-align edit-btn">
                         <button class="btn waves-effect waves-light" type="submit" name="add_log">
                             Edit Log <i class="fas fa-biking right"></i>
                         </button>
+                    </div>
+                     <div class="col s6 center-align edit-btn">
+                       <a href="{{ url_for('logs') }}" class="waves-effect waves-light btn red accent-4">
+                           Cancel
+                        </a>
                     </div>
                 </div>
             </form>
