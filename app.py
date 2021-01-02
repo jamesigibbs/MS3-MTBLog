@@ -109,7 +109,7 @@ def add_log():
             "created_by": session['user']
         }
         mongo.db.logs.insert_one(log)
-        flash('Task Successfully Added')
+        flash('Log Successfully Added')
         return redirect(url_for("logs"))
     disciplines = mongo.db.discipline.find().sort("discipline_name", 1)
     conditions = mongo.db.conditions.find().sort("condition_name", 1)
@@ -122,8 +122,27 @@ def add_log():
 
 @app.route("/edit_log/<log_id>", methods=["GET", "POST"])
 def edit_log(log_id):
+    if request.method == "POST":
+        ride_again = "Yes" if request.form.get("ride_again") else "No"
+        edit = {
+            "name": request.form.get("name_of_ride"),
+            "description": request.form.get("description"),
+            "date": request.form.get("date_of_ride"),
+            "location": request.form.get("location"),
+            "discipline": request.form.get("discipline"),
+            "grade": request.form.get("grade"),
+            "weather": request.form.get("weather"),
+            "trail_conditions": request.form.get("trail_conditions"),
+            "distance": request.form.get("distance"),
+            "elevation": request.form.get("elevation"),
+            "bike_used": request.form.get("bike_used"),
+            "ride_again": ride_again,
+            "created_by": session['user']
+        }
+        mongo.db.logs.update({"_id": ObjectId(log_id)}, edit)
+        flash('Log Successfully Edited')
+        return redirect(url_for("logs"))
     log = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
-
     disciplines = mongo.db.discipline.find().sort("discipline_name", 1)
     conditions = mongo.db.conditions.find().sort("condition_name", 1)
     return render_template(

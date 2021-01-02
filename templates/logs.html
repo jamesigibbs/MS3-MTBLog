@@ -11,8 +11,10 @@
                         <span class="header-title">{{ log.created_by }}</span>
                     </div>
                     <div class="col s4">
-                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn"><i class="fas fa-edit"></i></a>
-                        <a href="" class="waves-effect waves-light btn red accent-4"><i class="fas fa-times"></i></a>
+                        {% if session.user|lower == log.created_by|lower or session.user|lower == 'admin' %}
+                            <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn"><i class="fas fa-edit"></i></a>
+                            <a href="" class="waves-effect waves-light btn red accent-4"><i class="fas fa-times"></i></a>
+                        {% endif %}
                     </div>
                         
 
