@@ -101,7 +101,9 @@ def add_log():
             "discipline": request.form.get("discipline"),
             "grade": request.form.get("grade"),
             "weather": request.form.get("weather"),
-            "trail_condtions": request.form.get("trail_condtions"),
+            "trail_conditions": request.form.get("trail_conditions"),
+            "distance": request.form.get("distance"),
+            "elevation": request.form.get("elevation"),
             "bike_used": request.form.get("bike_used"),
             "ride_again": ride_again,
             "created_by": session['user']
@@ -113,6 +115,20 @@ def add_log():
     conditions = mongo.db.conditions.find().sort("condition_name", 1)
     return render_template(
         "add_log.html",
+        disciplines=disciplines,
+        conditions=conditions
+     )
+
+
+@app.route("/edit_log/<log_id>", methods=["GET", "POST"])
+def edit_log(log_id):
+    log = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
+
+    disciplines = mongo.db.discipline.find().sort("discipline_name", 1)
+    conditions = mongo.db.conditions.find().sort("condition_name", 1)
+    return render_template(
+        "edit_log.html",
+        log=log,
         disciplines=disciplines,
         conditions=conditions
      )

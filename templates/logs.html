@@ -11,8 +11,8 @@
                         <span class="header-title">{{ log.created_by }}</span>
                     </div>
                     <div class="col s4">
-                        <a class="waves-effect waves-light btn"><i class="fas fa-edit"></i></a>
-                        <a class="waves-effect waves-light btn red accent-4"><i class="fas fa-times"></i></a>
+                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn"><i class="fas fa-edit"></i></a>
+                        <a href="" class="waves-effect waves-light btn red accent-4"><i class="fas fa-times"></i></a>
                     </div>
                         
 
@@ -36,7 +36,7 @@
                             <p>Grade: {{ log.grade }}</p>
                         </div>
                         <div class="col s6 center-align">
-                            <p>Disapline: {{ log.disapline }}</p>
+                            <p>Discipline: {{ log.discipline|capitalize }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="row">
                         <div class="col s6 center-align">
-                            <p>Trail Condition: {{ log.trail_conditions }}</p>
+                            <p>Trail Condition: {{ log.trail_conditions|capitalize }}</p>
                         </div>
                         <div class="col s6 center-align">
                             <p>Bike Used: {{ log.bike_used }}</p>
