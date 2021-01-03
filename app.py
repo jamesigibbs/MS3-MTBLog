@@ -160,6 +160,16 @@ def delete_log(log_id):
     return redirect(url_for("logs"))
 
 
+@app.route("/admin")
+def admin():
+    disciplines = list(mongo.db.discipline.find().sort("discipline_name", 1))
+    conditions = list(mongo.db.conditions.find().sort("condition_name", 1))
+    return render_template("admin.html",
+        disciplines=disciplines,
+        conditions=conditions
+        )
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
