@@ -153,6 +153,13 @@ def edit_log(log_id):
      )
 
 
+@app.route("/delete_log/<log_id>")
+def delete_log(log_id):
+    mongo.db.logs.remove({"_id": ObjectId(log_id)})
+    flash("Log Deleted")
+    return redirect(url_for("logs"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
