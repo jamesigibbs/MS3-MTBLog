@@ -195,6 +195,20 @@ def add_condition():
     return redirect(url_for("admin"))
 
 
+@app.route("/delete_discipline/<discipline_id>")
+def delete_discipline(discipline_id):
+    mongo.db.discipline.remove({"_id": ObjectId(discipline_id)})
+    flash('Discipline Successfully Deleted')
+    return redirect(url_for("admin"))
+
+
+@app.route("/delete_condition/<condition_id>")
+def delete_condition(condition_id):
+    mongo.db.conditions.remove({"_id": ObjectId(condition_id)})
+    flash('Condition Successfully Deleted')
+    return redirect(url_for("admin"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

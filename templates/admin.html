@@ -65,7 +65,7 @@
                         <h6>{{ discipline.discipline_name|capitalize }}</h6>
                     </div>
                     <div class="col s1">
-                        <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
+                        <a href="{{ url_for('delete_discipline', discipline_id=discipline._id) }}" class="waves-effect waves-light btn red accent-4 admin-tool">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
@@ -88,7 +88,7 @@
                         <h6>{{ condition.condition_name|capitalize }}</h6>
                     </div>
                     <div class="col s1">
-                        <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
+                        <a href="{{ url_for('delete_condition', condition_id=condition._id) }}" class="waves-effect waves-light btn red accent-4 admin-tool">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
