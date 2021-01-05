@@ -1,115 +1,48 @@
 {% extends "postlog-base.html" %}
 {% block content %}
-    <!-- Modals -->
-    <!-- Add -->
-    <div id="add_item" class="modal">
-        <div class="modal-content center-align">
-            <h3>Add Item</h3>
-            <div class="row">
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="add" name="add" type="text" minlength="3" maxlength="100"
-                        class="validate" value="" required>
-                </div>
-                <div class="col s6 center-align">
-                    <a href="#" class="waves-effect waves-light btn">
-                        Add
-                    </a>
-                </div>
-                <div class="col s6 center-align">
-                    <a href="#!" class="waves-effect waves-light btn modal-close">
-                        Cancel
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Edit -->
-    <div id="edit_item" class="modal">
-        <div class="modal-content center-align">
-            <h3>Edit Item</h3>
-            <div class="row">
-                <div class="input-field  grey-text text-darken-2 col s12">
-                    <input id="edit" name="edit" type="text" minlength="3" maxlength="100"
-                        class="validate" value="" required>
-                </div>
-                <div class="col s6 center-align">
-                    <a href="#" class="waves-effect waves-light btn">
-                        Edit
-                    </a>
-                </div>
-                <div class="col s6 center-align">
-                    <a href="#!" class="waves-effect waves-light btn modal-close">
-                        Cancel
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete -->
-    <div id="delete_item" class="modal">
-        <div class="modal-content center-align">
-            <h3>Are you sure you want to delete?</h3>
-            <div class="row">
-                <div class="col s6 center-align">
-                    <a href="#" class="waves-effect waves-light btn">
-                        Yes
-                    </a>
-                </div>
-                <div class="col s6 center-align">
-                    <a href="#!" class="waves-effect waves-light btn modal-close">
-                        No
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Page -->
     <h3 class="center-align">Admin Tools</h3>
     <div class="add_form">
         <div class="row">
-            <div class="col s5 offset-s1 container green lighten-4">
+            <!-- Disapline -->
+            <div class="col s4 offset-s1 container green lighten-4 admin-tool">
                 <h4 class="center-align">Disciplines</h4>
                 <div class="row">
                     {% for discipline in disciplines %}
-                        <div class="col s8 center-align">
+                        <div class="col s9 center-align">
                             <h6>{{ discipline.discipline_name|capitalize }}</h6>
                         </div>
-                        <div class="col s4">
-                            <a href="#" class="waves-effect waves-light btn">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
+                        <div class="col s1">
+                            <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>
                     {% endfor %}
                 </div>
-                <div class="col s12">
-                    <a href="#" class="waves-effect waves-light btn">
+                    
+                <div class="col s12 center-align admin-tool">
+                    <a href="#" class="waves-effect waves-light btn ">
                         Add
                     </a>
                 </div>
             </div>
-            <div class="col s5 offset-s1 container green lighten-4">
+
+            <!-- Conditions -->
+            <div class="col s4 offset-s2 container green lighten-4 admin-tool">
                 <h4 class="center-align">Conditions</h4>
                 <div class="row">
                     {% for condition in conditions %}
-                        <div class="col s8 center-align">
-                            <h6>{{ condition.condition_name|capitalize }}</h6>
-                        </div>
-                        <div class="col s4">
-                            <a href="#" class="waves-effect waves-light btn">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
-                    {% endfor %}
+                    <div class="col s8 center-align">
+                        <h6>{{ condition.condition_name|capitalize }}</h6>
+                    </div>
+                    <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
+                        <i class="fas fa-times"></i>
+                    </a>
                 </div>
-                <div class="col s12">
+                {% endfor %}
+            
+                <div class="col s12 center-align admin-tool">
                     <a href="#" class="waves-effect waves-light btn">
                         Add
                     </a>
