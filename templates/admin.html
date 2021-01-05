@@ -1,6 +1,57 @@
 {% extends "postlog-base.html" %}
 {% block content %}
-
+    <!-- Add Disapline Modal -->
+    <div id="discipline-m" class="modal">
+        <div class="modal-content">
+            <h3 class="center-align">Add Disapline</h3>
+            <div class="row">
+                <form class="col s12" method="POST" action="#">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="discipline" name="discipline" type="text" class="validate">
+                            <label for="discipline">Disapline</label>
+                        </div>
+                        <div class="col s6 center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                                Add
+                            </button>
+                        </div>
+                        <div class="col s6 center-align">
+                            <a href="#" class="waves-effect waves-light btn red accent-4 modal-close">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Add Condition Modal -->
+    <div id="condition-m" class="modal">
+        <div class="modal-content">
+            <h3 class="center-align">Add Condition</h3>
+            <div class="row">
+                <form class="col s12" method="POST" action="#">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="condition" name="condition" type="text" class="validate">
+                            <label for="condition">Condition</label>
+                        </div>
+                        <div class="col s6 center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                                Add
+                            </button>
+                        </div>
+                        <div class="col s6 center-align">
+                            <a href="#" class="waves-effect waves-light btn red accent-4 modal-close">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Page -->
     <h3 class="center-align">Admin Tools</h3>
     <div class="add_form">
@@ -10,19 +61,19 @@
                 <h4 class="center-align">Disciplines</h4>
                 <div class="row">
                     {% for discipline in disciplines %}
-                        <div class="col s9 center-align">
-                            <h6>{{ discipline.discipline_name|capitalize }}</h6>
-                        </div>
-                        <div class="col s1">
-                            <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
+                    <div class="col s9 center-align">
+                        <h6>{{ discipline.discipline_name|capitalize }}</h6>
+                    </div>
+                    <div class="col s1">
+                        <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
                     {% endfor %}
                 </div>
-                    
+
                 <div class="col s12 center-align admin-tool">
-                    <a href="#" class="waves-effect waves-light btn ">
+                    <a href="#discipline-m" class="waves-effect waves-light btn modal-trigger">
                         Add
                     </a>
                 </div>
@@ -36,14 +87,14 @@
                     <div class="col s8 center-align">
                         <h6>{{ condition.condition_name|capitalize }}</h6>
                     </div>
-                    <a href="#" class="waves-effect waves-light btn red accent-4 modal-trigger">
+                    <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
                         <i class="fas fa-times"></i>
                     </a>
                 </div>
                 {% endfor %}
-            
+
                 <div class="col s12 center-align admin-tool">
-                    <a href="#" class="waves-effect waves-light btn">
+                    <a href="#condition-m" class="waves-effect waves-light btn modal-trigger">
                         Add
                     </a>
                 </div>
