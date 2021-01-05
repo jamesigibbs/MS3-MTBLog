@@ -5,14 +5,14 @@
         <div class="modal-content">
             <h3 class="center-align">Add Disapline</h3>
             <div class="row">
-                <form class="col s12" method="POST" action="#">
+                <form class="col s12" method="POST" action="{{ url_for('add_discipline') }}">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="discipline" name="discipline" type="text" class="validate">
-                            <label for="discipline">Disapline</label>
+                            <label for="discipline">Discipline</label>
                         </div>
                         <div class="col s6 center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                            <button class="btn waves-effect waves-light" type="submit" name="add_discipline">
                                 Add
                             </button>
                         </div>
@@ -31,14 +31,14 @@
         <div class="modal-content">
             <h3 class="center-align">Add Condition</h3>
             <div class="row">
-                <form class="col s12" method="POST" action="#">
+                <form class="col s12" method="POST" action="{{ url_for('add_condition') }}">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="condition" name="condition" type="text" class="validate">
                             <label for="condition">Condition</label>
                         </div>
                         <div class="col s6 center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                            <button class="btn waves-effect waves-light" type="submit" name="add_condition">
                                 Add
                             </button>
                         </div>
@@ -87,16 +87,17 @@
                     <div class="col s8 center-align">
                         <h6>{{ condition.condition_name|capitalize }}</h6>
                     </div>
-                    <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
-                        <i class="fas fa-times"></i>
-                    </a>
-                </div>
-                {% endfor %}
-
-                <div class="col s12 center-align admin-tool">
-                    <a href="#condition-m" class="waves-effect waves-light btn modal-trigger">
-                        Add
-                    </a>
+                    <div class="col s1">
+                        <a href="#" class="waves-effect waves-light btn red accent-4 admin-tool">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    <div class="col s12 center-align admin-tool">
+                        <a href="#condition-m" class="waves-effect waves-light btn modal-trigger">
+                            Add
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

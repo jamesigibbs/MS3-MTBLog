@@ -56,7 +56,6 @@ def login():
         # check if username exists in database
         exitsing_user = mongo.db.users.find_one(
              {"username": request.form.get("username")})
-        
         if exitsing_user:
             # ensure hashed password matches user input
             if check_password_hash(
@@ -172,6 +171,28 @@ def admin():
         disciplines=disciplines,
         conditions=conditions
         )
+
+
+@app.route("/add_discipline", methods=["GET", "POST"])
+def add_discipline():
+    if request.method == "POST":
+        add = {
+            "discipline_name": request.form.get("discipline").lower()
+        }
+    mongo.db.discipline.insert_one(add)
+    flash('Discipline Successfully Added')
+    return redirect(url_for("admin"))
+
+
+@app.route("/add_condition", methods=["GET", "POST"])
+def add_condition():
+    if request.method == "POST":
+        add = {
+            "condition_name": request.form.get("condition").lower()
+        }
+    mongo.db.conditions.insert_one(add)
+    flash('Condition Successfully Added')
+    return redirect(url_for("admin"))
 
 
 if __name__ == "__main__":
