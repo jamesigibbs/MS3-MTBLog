@@ -56,12 +56,14 @@ def login():
         # check if username exists in database
         exitsing_user = mongo.db.users.find_one(
              {"username": request.form.get("username")})
-
+        
         if exitsing_user:
             # ensure hashed password matches user input
             if check_password_hash(
              exitsing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username")
+                session['user_id'] = str(exitsing_user['_id'])
+                print(session['user_id'])
                 return redirect(url_for("logs"))
             else:
                 # invalid password
@@ -78,6 +80,7 @@ def login():
 @app.route("/logs")
 def logs():
     if session["user"]:
+        print(session['user'])
         logs = mongo.db.logs.find()
         return render_template("logs.html", logs=logs)
     return redirect(url_for("login"))
@@ -106,6 +109,7 @@ def add_log():
             "elevation": request.form.get("elevation"),
             "bike_used": request.form.get("bike_used"),
             "ride_again": ride_again,
+            "user_id": ObjectId(session['user_id']),
             "created_by": session['user']
         }
         mongo.db.logs.insert_one(log)
