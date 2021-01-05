@@ -78,11 +78,17 @@ def login():
 
 @app.route("/logs")
 def logs():
-    if session["user"]:
-        print(session['user'])
-        logs = mongo.db.logs.find()
+    if "user" in session:
+        logs = list(mongo.db.logs.find())
         return render_template("logs.html", logs=logs)
     return redirect(url_for("login"))
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    logs = list(mongo.db.logs.find({"$text": {"$search": query}}))
+    return render_template("logs.html", logs=logs)
 
 
 @app.route("/logout")
@@ -170,7 +176,7 @@ def admin():
     return render_template("admin.html",
         disciplines=disciplines,
         conditions=conditions
-        )
+    )
 
 
 @app.route("/add_discipline", methods=["GET", "POST"])

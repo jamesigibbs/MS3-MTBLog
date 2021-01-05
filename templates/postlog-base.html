@@ -29,7 +29,9 @@
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{{ url_for('logs') }}">Home</a></li>
-                            <li><a href="{{ url_for('admin') }}">Admin Tools</a></li>
+                            {% if session.user|lower == "admin"|lower %}
+                                <li><a href="{{ url_for('admin') }}">Admin Tools</a></li>
+                            {% endif %}
                             <li><a href="{{ url_for('add_log') }}">Add Log</a></li>
                             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                         </ul>
@@ -38,7 +40,9 @@
                 <!--Moblie nav-->
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="{{ url_for('logs') }}">Home</a></li>
-                    <li><a href="{{ url_for('admin') }}">Admin Tools</a></li>
+                     {% if session.user|lower == "admin"|lower %}
+                        <li><a href="{{ url_for('admin') }}">Admin Tools</a></li>
+                    {% endif %}
                     <li><a href="{{ url_for('add_log') }}">Add Log</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 </ul>
