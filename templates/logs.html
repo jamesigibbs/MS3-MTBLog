@@ -3,15 +3,15 @@
     <div class="row card-pannel green lighten-4">
         <form action="{{ url_for('search') }}" method="POST" class="col s12 container">
             <div class="row valign-wrapper center-align">
-                <div class="input-field col s9 offset-s1">
+                <div class="input-field col m9 s8 offset-m1">
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
                     <label for="query">Search Logs</label>
                 </div>
-                <div class="col s2">
-                    <button class="btn waves-effect waves-light" type="submit" name="search">
+                <div class="col m2 offset-s1">
+                    <button class="btn waves-effect waves-light btn-spacing btn-spacing-m" type="submit" name="search">
                         <i class="fas fa-search"></i>
                     </button>
-                    <a href="{{ url_for('logs') }}" class="waves-effect waves-light btn red accent-4 modal-trigger">
+                    <a href="{{ url_for('logs') }}" class="waves-effect waves-light btn red accent-4 modal-trigger btn-spacing">
                         <i class="fas fa-redo"></i>
                     </a>
                 </div>
@@ -46,14 +46,14 @@
                     <div class="col s8">
                         <span class="header-title"><i class="fas fa-caret-down"></i></span>
                         <span class="header-title"><strong>{{ log.name }}</strong></span>
-                        <span class="header-title">{{ log.date }}</span>
-                        <span class="header-title"><strong>{{ log.created_by }}</strong></span>
+                        <span class="header-title hide-on-small-only">{{ log.date }}</span>
+                        <span class="header-title hide-on-small-only"><strong>{{ log.created_by }}</strong></span>
                     </div>
                     <div class="col s4">
                         {% if session.user|lower == log.created_by|lower or session.user|lower == 'admin' %}
-                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn"><i
+                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn btn-spacing"><i
                                 class="fas fa-edit"></i></a>
-                        <a href="#delete_log\{{loop.index}}" class="waves-effect waves-light btn red accent-4 modal-trigger"><i
+                        <a href="#delete_log\{{loop.index}}" class="waves-effect waves-light btn red accent-4 modal-trigger btn-spacing"><i
                                 class="fas fa-times"></i></a>
                         {% endif %}
                     </div>
@@ -62,6 +62,14 @@
                     <div class="row">
                         <div class="col s12 center-align">
                             {{ log.description }}
+                        </div>
+                    </div>
+                    <div class="row hide-on-med-and-up">
+                        <div class="col s6 center-align">
+                            <p>{{ log.created_by }}</p>
+                        </div>
+                        <div class="col s6 center-align">
+                            <p>{{ log.date }}</p>
                         </div>
                     </div>
                     <div class="row">

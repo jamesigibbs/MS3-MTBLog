@@ -29,7 +29,7 @@
                         <label for="location">Location</label>
                     </div>
                     <!-- Discipline -->
-                    <div class="input-field grey-text text-darken-2 col s6">
+                    <div class="input-field grey-text text-darken-2 col s12 m6">
                         <select id="discipline" name="discipline" class="grey-text text-darken-2" required>
                             <option value="" disabled>Discipline</option>
                             {% for discipline in disciplines %}
@@ -42,7 +42,7 @@
                         </select>
                     </div>
                     <!-- Grade -->
-                    <div class="input-field grey-text text-darken-2 col s6">
+                    <div class="input-field grey-text text-darken-2 col s12 m6">
                         <select id="grade" name="grade" required>
                             <option value="" disabled selected>Grade</option>
                             {% if log.weather == null %}
@@ -64,7 +64,7 @@
                         </select>
                     </div>
                     <!-- Weather -->
-                    <div class="input-field grey-text text-darken-2 col s6">
+                    <div class="input-field grey-text text-darken-2 col s12 m6">
                         <select id="weather" name="weather" required>
                             <option value="" disabled>Weather</option>
                             {% if log.weather == null %}
@@ -88,7 +88,7 @@
                         </select>
                     </div>
                     <!-- Trail Conditions -->
-                    <div class="input-field grey-text text-darken-2 col s6">
+                    <div class="input-field grey-text text-darken-2 col s12 m6">
                         <select id="trail_conditions" name="trail_conditions" required>
                             <option value="" disabled>Trail Conditions</option>
                             {% for condition in conditions %}
@@ -101,7 +101,7 @@
                         </select>
                     </div>
                     <!-- Elevation -->
-                    <div class="input-field  grey-text text-darken-2 col s6">
+                    <div class="input-field  grey-text text-darken-2 col s12 m6">
                         <input id="elevation" name="elevation" value="{{ log.elevation }}" type="text" minlength="1" maxlength="5" class="validate">
                         <label for="elevation">Elevation (Meters)</label>
                     </div>
@@ -120,14 +120,14 @@
                     <div class="switch col s12 center-align">
                         <p for="ride_again">Would you ride this trail again?</p>
                         <label class="black-text">
-                            No
+                            <span class="hide-on-small-only">No</span>
                             {% if log.ride_again == "Yes" %}
                                 <input id="ride_again" name="ride_again" type="checkbox" checked>
                             {% else %}
                                  <input id="ride_again" name="ride_again" type="checkbox">
                             {% endif %}
                             <span class="lever"></span>
-                            Yes
+                            <span class="hide-on-small-only">Yes</span>
                         </label>
                     </div>
                     <div class="col s6 center-align edit-btn">

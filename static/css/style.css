@@ -29,3 +29,21 @@ body.postlog {
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
+/* Resposive CSS */
+
+/* Tablet */
+
+@media only screen and (max-width: 1024px) {
+    .btn-spacing-m {
+        margin: 5px;
+    }
+}
+
+/* Phone */
+
+@media only screen and (max-width: 500px) {
+	.btn-spacing {
+        margin: 5px;
+    }
+}
