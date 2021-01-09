@@ -1,0 +1,2 @@
+<span class="hide-on-small-only">Yes</span>
+<span class="hide-on-small-only">No</span>
