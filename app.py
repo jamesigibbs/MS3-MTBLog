@@ -42,11 +42,11 @@ def register():
             "username": request.form.get("username"),
             "password": generate_password_hash(request.form.get("password"))
         }
-        mongo.db.users.insert_one(register)
-
+        user = mongo.db.users.insert_one(register)
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username")
-        flash("Registraion Succsessful")
+        session['user_id'] = str(user.inserted_id)
+        return redirect(url_for("logs"))
     return render_template("register.html")
 
 
@@ -62,7 +62,6 @@ def login():
              exitsing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username")
                 session['user_id'] = str(exitsing_user['_id'])
-                print(session['user_id'])
                 return redirect(url_for("logs"))
             else:
                 # invalid password

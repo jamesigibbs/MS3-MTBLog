@@ -1,3 +1,8 @@
 MTB Background IMG Source -- https://en.wikipedia.org/wiki/Mountain_bike#/media/File:Norco_Range.jpg
 Mountain Backgorund IMG Source -- https://wallpaperscraft.com/download/mountain_sky_lake_summer_92505/1920x1080
 Matirialize Select Validation Script -- https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/04-AddingATask-WritingToTheDatabase/02-materialize-select-validation/static/js/script.js
+
+ReadME
+future functionality -- increse test coverage
+end to end test and unit testing
+
