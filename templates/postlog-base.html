@@ -40,7 +40,7 @@
                 <!--Moblie nav-->
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="{{ url_for('logs') }}">Home</a></li>
-                     {% if session.user|lower == "admin"|lower %}
+                    {% if session.user|lower == "admin"|lower %}
                         <li><a href="{{ url_for('admin') }}">Admin Tools</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('add_log') }}">Add Log</a></li>
