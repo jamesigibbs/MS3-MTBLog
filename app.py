@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -172,10 +172,11 @@ def delete_log(log_id):
 def admin():
     disciplines = list(mongo.db.discipline.find().sort("discipline_name", 1))
     conditions = list(mongo.db.conditions.find().sort("condition_name", 1))
-    return render_template("admin.html",
-        disciplines=disciplines,
-        conditions=conditions
-    )
+    return render_template(
+                        "admin.html",
+                        disciplines=disciplines,
+                        conditions=conditions
+                    )
 
 
 @app.route("/add_discipline", methods=["GET", "POST"])

@@ -1,5 +1,6 @@
 {% extends "postlog-base.html" %}
 {% block content %}
+    <!-- Search Engine -->
     <div class="row card-pannel green lighten-4">
         <form action="{{ url_for('search') }}" method="POST" class="col s12 container">
             <div class="row valign-wrapper center-align">
@@ -41,7 +42,7 @@
                 </div>
             </div>
             <li>
-            <!-- Main page -->
+            <!-- Display logs -->
                 <div class="collapsible-header row">
                     <div class="col s8">
                         <span class="header-title"><i class="fas fa-caret-down"></i></span>
@@ -51,10 +52,12 @@
                     </div>
                     <div class="col s4">
                         {% if session.user|lower == log.created_by|lower or session.user|lower == 'admin' %}
-                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn btn-spacing"><i
-                                class="fas fa-edit"></i></a>
-                        <a href="#delete_log\{{loop.index}}" class="waves-effect waves-light btn red accent-4 modal-trigger btn-spacing"><i
-                                class="fas fa-times"></i></a>
+                        <a href="{{ url_for('edit_log', log_id=log._id) }}" class="waves-effect waves-light btn btn-spacing">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="#delete_log\{{loop.index}}" class="waves-effect waves-light btn red accent-4 modal-trigger btn-spacing">
+                            <i class="fas fa-times"></i>
+                        </a>
                         {% endif %}
                     </div>
                 </div>
