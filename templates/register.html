@@ -13,7 +13,7 @@
         <div class="col s12 m8 l4 offset-m2 offset-l4 center-align">
             <form class="card large blue-grey darken-1" method="POST" action="{{ url_for('register') }}">
                 <div class="card-content white-text">
-                    <h2>Register</h2>
+                    <h3>Register</h3>
                     <!--Email-->
                     <div class="input-field col s10">
                         <i class="fas fa-envelope prefix"></i>
@@ -23,10 +23,9 @@
                      <!--Username-->
                     <div class="input-field col s10">
                         <i class="fas fa-user-plus prefix"></i>
-                        <input id="username" name="username" type="text" pattern="^[a-zA-Z]$" 
+                        <input id="username" name="username" type="text" 
                             minlength="4" maxlength="20" class="white-text validate" required>
                         <label for="username">Username</label>
-                        <span class="white-text"><em>**Username Must be 4-20 character**</em></span>
                     </div>
                     <!--Password-->
                     <div class="input-field col s10">
@@ -37,13 +36,13 @@
                         <span class="white-text"><em>**Password must conatain a uppercase letter and a number**</em></span>
                     </div>
                     <!-- Register Button -->
-                    <div class="col s12 center-align">
+                    <div class="col s6 center-align">
                                 <button type="submit" class="waves-effect waves-light btn">Register</button>
                     </div>
                     <div class="row"></div>
                     <!-- Login link -->
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s6">
                             <p class="center-align">
                                 Been here before?
                                 <a href="{{ url_for('login') }}" class="light-blue-text darken-4">Log in</a>
